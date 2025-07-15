@@ -1,0 +1,16 @@
+[project]
+name = "trello-cli"
+version = "0.1.0"
+description = "A CLI for interacting with Trello."
+requires-python = ">=3.11"
+authors = [{ name = "Gemini", email = "gemini@google.com" }]
+dependencies = [
+    "py-trello",
+    "typer[all]",
+    "sqlalchemy",
+    "alembic",
+    "google-generativeai",
+]
+
+[project.scripts]
+trello-cli = "trello_cli.main:app"
