@@ -1,6 +1,5 @@
 # Trello CLI
 
-[![PyPI version](https://badge.fury.io/py/trello-cli.svg)](https://badge.fury.io/py/trello-cli)
 [![Python Version](https://img.shields.io/pypi/pyversions/trello-cli.svg)](https://pypi.org/project/trello-cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
