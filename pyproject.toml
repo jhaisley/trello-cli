@@ -12,6 +12,7 @@ dependencies = [
     "google-generativeai",
     "bandit>=1.8.6",
     "detect-secrets>=1.5.0",
+    "ruff>=0.12.3",
 ]
 
 [project.scripts]

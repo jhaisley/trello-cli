@@ -7,7 +7,6 @@ from datetime import datetime, timedelta, timezone
 import google.generativeai as genai
 import os
 from pathlib import Path
-from typer.core import TyperGroup
 from rich.console import Console
 
 app = typer.Typer()
@@ -698,8 +697,6 @@ def cards_remove_label(card_id: str, label_id: str):
         raise typer.Exit(code=1)
 
 
-from rich.console import Console
-from rich.tree import Tree
 
 @app.command("help", help="Display help for all commands")
 def help_command(ctx: typer.Context):
