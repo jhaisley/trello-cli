@@ -10,6 +10,8 @@ dependencies = [
     "sqlalchemy",
     "alembic",
     "google-generativeai",
+    "bandit>=1.8.6",
+    "detect-secrets>=1.5.0",
 ]
 
 [project.scripts]
