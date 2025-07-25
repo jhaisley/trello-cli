@@ -42,6 +42,40 @@ def save_config(db: Session, key: str, value: str):
         db.add(config_item)
 
 
+@config_app.command("init")
+def config_init(
+    force: bool = typer.Option(
+        False,
+        "--force",
+        "-f",
+        help="Remove existing database before creating a new one.",
+    ),
+):
+    """
+    Initialize an empty database. Use --force to remove existing database.
+    """
+    from .database import DATABASE_URL, engine
+    from .models import Base
+
+    db_path = DATABASE_URL.replace("sqlite:///", "")
+
+    # Check if database exists
+    if os.path.exists(db_path):
+        if force:
+            print(f"Removing existing database: {db_path}")
+            os.remove(db_path)
+        else:
+            print(f"Database already exists at {db_path}")
+            print("Use --force flag to remove existing database and create a new one.")
+            raise typer.Exit(code=1)
+
+    # Create all tables
+    print("Creating empty database...")
+    Base.metadata.create_all(bind=engine)
+
+    print(f"Empty database initialized successfully at: {db_path}")
+
+
 @config_app.command("load")
 def config_load(path: Path = typer.Option("~/.env", help="Path to the .env file.")):
     """

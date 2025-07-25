@@ -1,9 +1,12 @@
+from unittest.mock import MagicMock, patch
+
 import pytest
 from typer.testing import CliRunner
-from unittest.mock import MagicMock, patch
+
 from trello_cli.main import app
 
 runner = CliRunner()
+
 
 @pytest.fixture
 def mock_trello_client_for_labels():
@@ -31,14 +34,17 @@ def mock_trello_client_for_labels():
     # Mock Client
     mock_client = MagicMock()
     mock_client.get_board.return_value = mock_board
-    
+
     return mock_client
 
+
 def test_labels_list_command(mock_trello_client_for_labels):
-    with patch('trello_cli.main.get_trello_client', return_value=mock_trello_client_for_labels):
+    with patch(
+        "trello_cli.main.get_trello_client", return_value=mock_trello_client_for_labels
+    ):
         result = runner.invoke(
             app,
-            ["labels", "list", "some_board_id"],
+            ["labels", "list", "--board-id", "some_board_id"],
         )
 
         print(result.stdout)
@@ -47,23 +53,34 @@ def test_labels_list_command(mock_trello_client_for_labels):
         assert "ID: label1_id, Name: Label 1, Color: blue" in result.stdout
         assert "ID: label2_id, Name: Label 2, Color: green" in result.stdout
 
+
 def test_labels_create_command(mock_trello_client_for_labels):
-    with patch('trello_cli.main.get_trello_client', return_value=mock_trello_client_for_labels):
+    with patch(
+        "trello_cli.main.get_trello_client", return_value=mock_trello_client_for_labels
+    ):
         result = runner.invoke(
             app,
-            ["labels", "create", "some_board_id", "New Label", "red"],
+            ["labels", "create", "New Label", "red", "--board-id", "some_board_id"],
         )
 
         print(result.stdout)
         assert result.exit_code == 0
-        assert "Successfully created label 'New Label' with ID 'new_label_id' and color 'red'." in result.stdout
-        mock_trello_client_for_labels.get_board.return_value.add_label.assert_called_once_with("New Label", "red")
+        assert (
+            "Successfully created label 'New Label' with ID 'new_label_id' and color 'red'."
+            in result.stdout
+        )
+        mock_trello_client_for_labels.get_board.return_value.add_label.assert_called_once_with(
+            "New Label", "red"
+        )
+
 
 def test_labels_delete_command(mock_trello_client_for_labels):
-    with patch('trello_cli.main.get_trello_client', return_value=mock_trello_client_for_labels):
+    with patch(
+        "trello_cli.main.get_trello_client", return_value=mock_trello_client_for_labels
+    ):
         result = runner.invoke(
             app,
-            ["labels", "delete", "some_board_id", "some_label_id"],
+            ["labels", "delete", "some_label_id", "--board-id", "some_board_id"],
         )
 
         print(result.stdout)

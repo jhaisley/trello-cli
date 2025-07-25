@@ -1,9 +1,12 @@
+from unittest.mock import MagicMock, patch
+
 import pytest
 from typer.testing import CliRunner
-from unittest.mock import MagicMock, patch
+
 from trello_cli.main import app
 
 runner = CliRunner()
+
 
 @pytest.fixture
 def mock_trello_client():
@@ -31,16 +34,17 @@ def mock_trello_client():
     # Mock Client
     mock_client = MagicMock()
     mock_client.get_board.return_value = mock_board
-    
+
     return mock_client, mock_card_unlabeled, mock_label
+
 
 def test_label_command(mock_trello_client):
     mock_client, mock_card_unlabeled, mock_label_obj = mock_trello_client
 
-    with patch('trello_cli.main.get_trello_client', return_value=mock_client):
+    with patch("trello_cli.main.get_trello_client", return_value=mock_client):
         result = runner.invoke(
             app,
-            ["label", "some_board_id", "Test Label"],
+            ["label", "Test Label", "--board-id", "some_board_id"],
         )
 
         print(result.stdout)
@@ -48,6 +52,6 @@ def test_label_command(mock_trello_client):
         assert "Found 1 unlabeled cards" in result.stdout
         assert "Applying label 'Test Label'..." in result.stdout
         assert "Applied label to card: 'Unlabeled Card'" in result.stdout
-        
+
         # Verify that add_label was called on the unlabeled card with the correct label
         mock_card_unlabeled.add_label.assert_called_once_with(mock_label_obj)
