@@ -1,13 +1,13 @@
-# Trello CLI
+# Trello Tools
 
-[![Python Version](https://img.shields.io/pypi/pyversions/trello-cli.svg)](https://pypi.org/project/trello-cli)
+[![Python Version](https://img.shields.io/pypi/pyversions/trello-tools.svg)](https://pypi.org/project/trello-tools)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A powerful command-line interface (CLI) for interacting with Trello. Manage your boards, lists, cards, and labels without leaving the terminal.
 
 ## Table of Contents
 
-- [Trello CLI](#trello-cli)
+- [Trello Tools](#trello-tools)
   - [Description](#description)
   - [History](#history)
   - [Features](#features)
@@ -57,6 +57,32 @@ Given its wide range of uses, the project has been made public to be used by a w
 - **Reporting**: Generate a report of board activity.
 - **Configuration**: Easily configure your Trello and Gemini API keys.
 
+
+## Installation
+
+### From Source (Current)
+
+```bash
+# Clone the repository
+git clone https://github.com/jhaisley/trello-cli.git
+cd trello-cli
+
+# Install with uv (recommended)
+uv sync
+uv run trello-cli --help
+
+# Or install with pip
+pip install -e .
+trello-cli --help
+```
+
+### From PyPI (Coming Soon)
+
+Once published to PyPI, you'll be able to install with:
+
+```bash
+pip install trello-tools
+```
 
 ## Configuration
 
