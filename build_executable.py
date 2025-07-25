@@ -22,7 +22,7 @@ def build_executable():
         "pyinstaller",
         "--onefile",
         "--name",
-        "trello-cli",
+        "trello-tools",
         "--console",
         "src/trello_cli/main.py",
     ]
@@ -31,7 +31,7 @@ def build_executable():
     subprocess.check_call(cmd)
 
     print("Executable built successfully!")
-    print("Find it in: dist/trello-cli.exe")
+    print("Find it in: dist/trello-tools.exe")
 
 
 if __name__ == "__main__":

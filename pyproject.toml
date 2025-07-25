@@ -44,7 +44,7 @@ dev = [
 ]
 
 [project.scripts]
-trello-cli = "trello_cli.main:app"
+trello-tools = "trello_cli.main:app"
 
 [build-system]
 requires = ["hatchling"]

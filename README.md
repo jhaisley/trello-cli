@@ -64,16 +64,16 @@ Given its wide range of uses, the project has been made public to be used by a w
 
 ```bash
 # Clone the repository
-git clone https://github.com/jhaisley/trello-cli.git
-cd trello-cli
+git clone https://github.com/jhaisley/trello-tools.git
+cd trello-tools
 
 # Install with uv (recommended)
 uv sync
-uv run trello-cli --help
+uv run trello-tools --help
 
 # Or install with pip
 pip install -e .
-trello-cli --help
+trello-tools --help
 ```
 
 ### From PyPI (Coming Soon)
@@ -99,7 +99,7 @@ Before you can use the Trello CLI, you need to configure your Trello API credent
 
     - **Using the `config trello` command**:
         ```bash
-        trello-cli config trello
+        trello-tools config trello
         ```
         You will be prompted to enter your API key, API secret, and token.
 
@@ -112,7 +112,7 @@ Before you can use the Trello CLI, you need to configure your Trello API credent
         ```
         Then, load the configuration:
         ```bash
-        trello-cli config load
+        trello-tools config load
         ```
 
 ### Gemini API (for AI labeling)
@@ -122,7 +122,7 @@ Before you can use the Trello CLI, you need to configure your Trello API credent
 
 2.  **Set your API key**:
     ```bash
-    trello-cli config gemini
+    trello-tools config gemini
     ```
     You will be prompted to enter your API key.
 
@@ -133,13 +133,13 @@ You can set a default board to avoid having to specify the board ID for every co
 1.  **Find your board ID**:
     You can find your board ID by running:
     ```bash
-    trello-cli boards show
+    trello-tools boards show
     ```
     The board ID is the long string of characters after the board name.
 
 2.  **Set the default board**:
     ```bash
-    trello-cli config set-default-board "your_board_id"
+    trello-tools config set-default-board "your_board_id"
     ```
 
 ## Usage
@@ -151,72 +151,72 @@ The Trello CLI is organized into several subcommands.
 You can get help for any command or subcommand by using the `--help` flag.
 
 ```bash
-trello-cli --help
-trello-cli boards --help
-trello-cli cards --help
+trello-tools --help
+trello-tools boards --help
+trello-tools cards --help
 ```
 
 ### Board Commands
 
 - **Show all boards**:
     ```bash
-    trello-cli boards show
+    trello-tools boards show
     ```
 
 - **Create a new board**:
     ```bash
-    trello-cli boards create "My New Board"
+    trello-tools boards create "My New Board"
     ```
 
 - **List all lists on a board**:
     ```bash
-    trello-cli boards lists --board-id "your_board_id"
+    trello-tools boards lists --board-id "your_board_id"
     ```
 
 ### Card Commands
 
 - **Create a new card**:
     ```bash
-    trello-cli cards create "your_list_id" "My New Card"
+    trello-tools cards create "your_list_id" "My New Card"
     ```
 
 - **Move a card to another list**:
     ```bash
-    trello-cli cards move "your_card_id" "your_new_list_id"
+    trello-tools cards move "your_card_id" "your_new_list_id"
     ```
 
 - **Add a comment to a card**:
     ```bash
-    trello-cli cards comment "your_card_id" "This is a comment."
+    trello-tools cards comment "your_card_id" "This is a comment."
     ```
 
 ### Label Commands
 
 - **List all labels on a board**:
     ```bash
-    trello-cli labels list --board-id "your_board_id"
+    trello-tools labels list --board-id "your_board_id"
     ```
 
 - **Create a new label**:
     ```bash
-    trello-cli labels create "My New Label" "blue" --board-id "your_board_id"
+    trello-tools labels create "My New Label" "blue" --board-id "your_board_id"
     ```
 
 ### Automated Tasks
 
 - **Apply a label to all unlabeled cards**:
     ```bash
-    trello-cli label "My Label" --board-id "your_board_id"
+    trello-tools label "My Label" --board-id "your_board_id"
     ```
 
 - **Automatically label cards using AI**:
     ```bash
-    trello-cli ai-label --board-id "your_board_id"
+    trello-tools ai-label --board-id "your_board_id"
     ```
 
 - **Archive inactive cards**:
     ```bash
-    trello-cli archive --days 30 --board-id "your_board_id"
+    trello-tools archive --days 30 --board-id "your_board_id"
     ```
 
 ## Development

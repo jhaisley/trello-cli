@@ -11,16 +11,16 @@ pip install trello-tools
 ### From Source (Current)
 ```bash
 # Clone the repository
-git clone https://github.com/jhaisley/trello-cli.git
-cd trello-cli
+git clone https://github.com/jhaisley/trello-tools.git
+cd trello-tools
 
 # Install with uv (recommended)
 uv sync
-uv run trello-cli --help
+uv run trello-tools --help
 
 # Or install with pip
 pip install -e .
-trello-cli --help
+trello-tools --help
 ```
 
 ## Installation Methods
@@ -34,8 +34,8 @@ trello-cli --help
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Clone and install
-git clone https://github.com/jhaisley/trello-cli.git
-cd trello-cli
+git clone https://github.com/jhaisley/trello-tools.git
+cd trello-tools
 uv sync
 ```
 
@@ -43,8 +43,8 @@ uv sync
 
 ```bash
 # Clone and install
-git clone https://github.com/jhaisley/trello-cli.git
-cd trello-cli
+git clone https://github.com/jhaisley/trello-tools.git
+cd trello-tools
 pip install -e .
 ```
 
@@ -62,7 +62,7 @@ For users who don't want to install Python:
 After installation, you'll need to configure your Trello API credentials:
 
 ```bash
-trello-cli config trello
+trello-tools config trello
 ```
 
 See the [README](README.md) for full configuration and usage instructions.
