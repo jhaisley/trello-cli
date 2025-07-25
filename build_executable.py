@@ -12,7 +12,7 @@ from pathlib import Path
 
 def run_command(cmd, description):
     """Run a command and handle errors."""
-    print(f"🔄 {description}...")
+    print(f"[*] {description}...")
     try:
         if isinstance(cmd, list):
             result = subprocess.run(cmd, check=True, capture_output=True, text=True)
@@ -22,10 +22,10 @@ def run_command(cmd, description):
             )
 
         if result.stdout.strip():
-            print(f"✅ {result.stdout.strip()}")
+            print(f"[+] {result.stdout.strip()}")
         return True
     except subprocess.CalledProcessError as e:
-        print(f"❌ Error: {e}")
+        print(f"[-] Error: {e}")
         if e.stderr:
             print(f"Details: {e.stderr}")
         return False
@@ -39,7 +39,7 @@ def clean_build_dirs():
     for dir_name in dirs_to_clean:
         dir_path = Path(dir_name)
         if dir_path.exists():
-            print(f"🧹 Cleaning {dir_name}/")
+            print(f"[*] Cleaning {dir_name}/")
             shutil.rmtree(dir_path)
 
     # Remove only the executable from dist, not the packages
@@ -47,7 +47,7 @@ def clean_build_dirs():
     if dist_path.exists():
         exe_path = dist_path / "trello-tools.exe"
         if exe_path.exists():
-            print("🧹 Removing old executable")
+            print("[*] Removing old executable")
             exe_path.unlink()
 
 
@@ -90,12 +90,12 @@ def build_executable():
     exe_path = Path("dist/trello-tools.exe")
     if exe_path.exists():
         size_mb = exe_path.stat().st_size / (1024 * 1024)
-        print("🎉 Executable built successfully!")
-        print(f"📁 Location: {exe_path.absolute()}")
-        print(f"📊 Size: {size_mb:.1f} MB")
+        print("[+] Executable built successfully!")
+        print(f"[*] Location: {exe_path.absolute()}")
+        print(f"[*] Size: {size_mb:.1f} MB")
         return True
     else:
-        print(f"❌ Executable not found at {exe_path}")
+        print(f"[-] Executable not found at {exe_path}")
         return False
 
 
@@ -126,7 +126,7 @@ def main():
         success = build_executable()
     else:
         # Build both by default
-        print("🚀 Building trello-tools executable and packages...")
+        print("[*] Building trello-tools executable and packages...")
         print()
 
         # Build packages first
@@ -140,16 +140,16 @@ def main():
             success = False
 
     if success:
-        print("\n🎉 Build completed successfully!")
-        print("\n📦 Distribution files:")
+        print("\n[+] Build completed successfully!")
+        print("\n[*] Distribution files:")
         dist_path = Path("dist")
         if dist_path.exists():
             for file in sorted(dist_path.iterdir()):
                 if file.is_file():
                     size_mb = file.stat().st_size / (1024 * 1024)
-                    print(f"   📄 {file.name} ({size_mb:.1f} MB)")
+                    print(f"   [*] {file.name} ({size_mb:.1f} MB)")
     else:
-        print("\n❌ Build failed!")
+        print("\n[-] Build failed!")
         return False
 
     return True
