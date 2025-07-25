@@ -38,7 +38,7 @@ def bump_version(part):
         return False
 
     # Commit the updated lock file
-    if not run_command("git add uv.lock && git commit -m 'Update uv.lock after version bump'", "Committing updated lock file"):
+    if not run_command('git add uv.lock && git commit -m "Update uv.lock after version bump"', "Committing updated lock file"):
         return False
 
     # Get the new version
