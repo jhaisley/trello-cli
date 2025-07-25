@@ -4,9 +4,9 @@ Build script to create a standalone executable using PyInstaller.
 This allows distribution without requiring Python to be installed.
 """
 
+import shutil
 import subprocess
 import sys
-import shutil
 from pathlib import Path
 
 
@@ -17,8 +17,10 @@ def run_command(cmd, description):
         if isinstance(cmd, list):
             result = subprocess.run(cmd, check=True, capture_output=True, text=True)
         else:
-            result = subprocess.run(cmd, shell=True, check=True, capture_output=True, text=True)
-        
+            result = subprocess.run(
+                cmd, shell=True, check=True, capture_output=True, text=True
+            )
+
         if result.stdout.strip():
             print(f"✅ {result.stdout.strip()}")
         return True
@@ -39,7 +41,7 @@ def clean_build_dirs():
         if dir_path.exists():
             print(f"🧹 Cleaning {dir_name}/")
             shutil.rmtree(dir_path)
-    
+
     # Remove only the executable from dist, not the packages
     dist_path = Path("dist")
     if dist_path.exists():
@@ -51,25 +53,34 @@ def clean_build_dirs():
 
 def build_executable():
     """Build a standalone executable using PyInstaller."""
-    
+
     # Clean previous builds
     clean_build_dirs()
-    
+
     # Create a more comprehensive build command using uv run
     cmd = [
-        "uv", "run", "pyinstaller",
-        "--onefile",                    # Single executable file
-        "--name", "trello-tools",       # Executable name
-        "--console",                    # Console application
-        "--clean",                      # Clean build cache
-        "--noconfirm",                  # Overwrite output directory
-        "--add-data", "src;src",        # Include source code
-        "--add-data", "README.md;.",    # Include README
-        "--hidden-import", "pkg_resources.extern",  # Fix potential import issues
-        "--hidden-import", "trello_cli.database",
-        "--hidden-import", "trello_cli.models", 
-        "--hidden-import", "trello_cli.trello",
-        "trello_tools_main.py",         # Entry point
+        "uv",
+        "run",
+        "pyinstaller",
+        "--onefile",  # Single executable file
+        "--name",
+        "trello-tools",  # Executable name
+        "--console",  # Console application
+        "--clean",  # Clean build cache
+        "--noconfirm",  # Overwrite output directory
+        "--add-data",
+        "src;src",  # Include source code
+        "--add-data",
+        "README.md;.",  # Include README
+        "--hidden-import",
+        "pkg_resources.extern",  # Fix potential import issues
+        "--hidden-import",
+        "trello_cli.database",
+        "--hidden-import",
+        "trello_cli.models",
+        "--hidden-import",
+        "trello_cli.trello",
+        "trello_tools_main.py",  # Entry point
     ]
 
     if not run_command(cmd, "Building standalone executable"):
@@ -96,15 +107,19 @@ def build_packages():
 def main():
     """Main build function."""
     import argparse
-    
-    parser = argparse.ArgumentParser(description="Build trello-tools executable and packages")
+
+    parser = argparse.ArgumentParser(
+        description="Build trello-tools executable and packages"
+    )
     parser.add_argument("--exe-only", action="store_true", help="Build executable only")
-    parser.add_argument("--packages-only", action="store_true", help="Build packages only")
-    
+    parser.add_argument(
+        "--packages-only", action="store_true", help="Build packages only"
+    )
+
     args = parser.parse_args()
-    
+
     success = True
-    
+
     if args.packages_only:
         success = build_packages()
     elif args.exe_only:
@@ -113,17 +128,17 @@ def main():
         # Build both by default
         print("🚀 Building trello-tools executable and packages...")
         print()
-        
+
         # Build packages first
         if not build_packages():
             success = False
-        
+
         print()
-        
+
         # Build executable
         if not build_executable():
             success = False
-    
+
     if success:
         print("\n🎉 Build completed successfully!")
         print("\n📦 Distribution files:")
@@ -136,7 +151,7 @@ def main():
     else:
         print("\n❌ Build failed!")
         return False
-    
+
     return True
 
 

@@ -1,9 +1,29 @@
 # Trello Tools
 
 [![Python Version](https://img.shields.io/pypi/pyversions/trello-tools.svg)](https://pypi.org/project/trello-tools)
+[![PyPI Version](https://img.shields.io/pypi/v/trello-tools.svg)](https://pypi.org/project/trello-tools)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Downloads](https://img.shields.io/pypi/dm/trello-tools.svg)](https://pypi.org/project/trello-tools)
 
 A powerful command-line interface (CLI) for interacting with Trello. Manage your boards, lists, cards, and labels without leaving the terminal.
+
+## 🚀 Quick Start
+
+### Option 1: Install from PyPI (Recommended)
+```bash
+pip install trello-tools
+trello-tools --help
+```
+
+### Option 2: Download Standalone Executable
+No Python required! Download the latest `trello-tools.exe` from [GitHub Releases](https://github.com/jhaisley/trello-tools/releases).
+
+### Option 3: Install from Source
+```bash
+git clone https://github.com/jhaisley/trello-tools.git
+cd trello-tools
+pip install -e .
+```
 
 ## Table of Contents
 
@@ -46,42 +66,82 @@ Given its wide range of uses, the project has been made public to be used by a w
 
 ## Features
 
-- **Board Management**: Create, update, close, and view your Trello boards.
-- **List Management**: View all lists on a board.
-- **Card Management**: Create, update, delete, move, and comment on cards.
-- **Label Management**: Create, delete, and view labels on a board.
-- **Automated Labeling**:
-    - Apply a specific label to all unlabeled cards.
-    - Automatically label cards using the Gemini API for intelligent suggestions.
-- **Bulk Archiving**: Archive inactive cards based on a specified number of days.
-- **Reporting**: Generate a report of board activity.
-- **Configuration**: Easily configure your Trello and Gemini API keys.
+### 📋 **Board Management**
+- **View all boards**: List all your Trello boards with IDs
+- **Create new boards**: Set up new projects instantly
+- **List management**: View all lists on any board
+- **Board reporting**: Generate activity reports
+
+### 🃏 **Card Operations**
+- **Create cards**: Add new cards to any list
+- **Move cards**: Transfer cards between lists seamlessly
+- **Comment system**: Add comments to cards for collaboration
+- **Bulk operations**: Process multiple cards efficiently
+
+### 🏷️ **Smart Labeling**
+- **Manual labeling**: Apply labels to unlabeled cards in bulk
+- **AI-powered labeling**: Automatically categorize cards using Google Gemini AI
+- **Label management**: Create, delete, and organize labels
+- **Intelligent suggestions**: Get context-aware label recommendations
+
+### 🤖 **AI Features** 
+- **Google Gemini integration**: Leverage AI for intelligent card processing
+- **Automatic categorization**: Smart labeling based on card content
+- **Context understanding**: AI analyzes card titles and descriptions
+- **Batch processing**: Handle multiple cards with AI assistance
+
+### ⚙️ **Configuration & Setup**
+- **Easy API setup**: Simple configuration for Trello and Gemini APIs
+- **Default boards**: Set frequently-used boards as defaults
+- **Secure storage**: API keys stored securely in local database
+- **Environment support**: Load configuration from `.env` files
+
+### 🔧 **Advanced Tools**
+- **Automated archiving**: Archive inactive cards based on age
+- **Export functionality**: Backup boards to Loomic format
+- **Database management**: Local SQLite database for settings
+- **Comprehensive help**: Built-in help system for all commands
+
+### 💻 **Multiple Distribution Options**
+- **PyPI package**: `pip install trello-tools`
+- **Standalone executable**: No Python required (~40MB)
+- **Source installation**: Full development setup
+- **Cross-platform**: Works on Windows, macOS, and Linux
 
 
 ## Installation
 
-### From Source (Current)
+### 📦 From PyPI (Recommended)
+
+```bash
+pip install trello-tools
+trello-tools --help
+```
+
+### ⚡ Standalone Executable (No Python Required)
+
+Download the latest `trello-tools.exe` (~40MB) from [GitHub Releases](https://github.com/jhaisley/trello-tools/releases):
+
+1. Go to [Releases](https://github.com/jhaisley/trello-tools/releases)
+2. Download `trello-tools.exe` from the latest release
+3. Run it directly: `trello-tools.exe --help`
+
+Perfect for users who don't have Python installed!
+
+### 🔧 From Source (Development)
 
 ```bash
 # Clone the repository
 git clone https://github.com/jhaisley/trello-tools.git
 cd trello-tools
 
-# Install with uv (recommended)
+# Install with uv (recommended for development)
 uv sync
 uv run trello-tools --help
 
 # Or install with pip
 pip install -e .
 trello-tools --help
-```
-
-### From PyPI (Coming Soon)
-
-Once published to PyPI, you'll be able to install with:
-
-```bash
-pip install trello-tools
 ```
 
 ## Configuration
@@ -221,13 +281,58 @@ trello-tools cards --help
 
 ## Development
 
-To set up the development environment, you will need to install the project in editable mode with the development dependencies:
+### Setting Up Development Environment
 
 ```bash
+# Clone the repository
+git clone https://github.com/jhaisley/trello-tools.git
+cd trello-tools
+
+# Install with uv (recommended)
+uv sync
+
+# Or install with pip
 pip install -e .[dev]
 ```
 
-This will install the project and the dependencies listed in `pyproject.toml`.
+### Development Tools
+
+- **Testing**: `uv run pytest` or `pytest`
+- **Linting**: `uv run ruff check .`
+- **Formatting**: `uv run ruff format .`
+- **Type checking**: Built into ruff
+- **Security scanning**: `uv run bandit -r src/`
+
+### Building and Releasing
+
+```bash
+# Build packages
+uv build
+
+# Build standalone executable
+python build_executable.py
+
+# Version management
+uv run bump2version patch  # or minor, major
+
+# Full release process
+python version_manager.py patch --release
+```
+
+### Project Structure
+
+```text
+trello-tools/
+├── src/trello_cli/         # Main package code
+├── tests/                  # Test suite
+├── dist/                   # Built packages and executables
+├── build_executable.py     # Executable building script
+├── version_manager.py      # Version and release management
+├── VERSION_MANAGEMENT.md   # Version management guide
+└── pyproject.toml          # Project configuration
+```
+
+See [VERSION_MANAGEMENT.md](VERSION_MANAGEMENT.md) for detailed development workflows.
 
 ## Testing
 
