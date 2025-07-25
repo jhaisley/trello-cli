@@ -1,8 +1,6 @@
-import pytest
 from typer.testing import CliRunner
 from unittest.mock import patch, MagicMock, mock_open
 from trello_cli.main import app
-from pathlib import Path
 
 runner = CliRunner()
 
