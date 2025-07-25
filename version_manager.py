@@ -33,6 +33,14 @@ def bump_version(part):
     if not run_command(f"uv run bump2version {part}", f"Bumping {part} version"):
         return False
 
+    # Regenerate lock file to update version references
+    if not run_command("uv lock", "Regenerating lock file"):
+        return False
+
+    # Commit the updated lock file
+    if not run_command("git add uv.lock && git commit -m 'Update uv.lock after version bump'", "Committing updated lock file"):
+        return False
+
     # Get the new version
     result = subprocess.run(
         "uv run bump2version --dry-run --list patch",
