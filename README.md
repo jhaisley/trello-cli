@@ -57,13 +57,6 @@ Given its wide range of uses, the project has been made public to be used by a w
 - **Reporting**: Generate a report of board activity.
 - **Configuration**: Easily configure your Trello and Gemini API keys.
 
-## Installation
-
-You can install the Trello CLI using pip:
-
-```bash
-pip install trello-cli
-```
 
 ## Configuration
 
