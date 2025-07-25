@@ -41,6 +41,24 @@ python version_manager.py minor --release
 
 3. **Creates git tag** with name: `vX.Y.Z`
 
+## Building Executables
+
+### Standalone Executable
+Build a standalone executable that doesn't require Python:
+
+```bash
+# Build executable only
+python build_executable.py --exe-only
+
+# Build packages only  
+python build_executable.py --packages-only
+
+# Build both (default)
+python build_executable.py
+```
+
+The executable will be created at `dist/trello-tools.exe` (~40MB) and can be distributed to users who don't have Python installed.
+
 ## Release Workflow
 
 ### Manual Release
@@ -48,18 +66,19 @@ python version_manager.py minor --release
 # 1. Bump version
 uv run bump2version patch
 
-# 2. Build packages
+# 2. Build packages and executable
 uv build
+python build_executable.py --exe-only
 
 # 3. Push changes and tags
 git push
-git push origin v0.1.1  # replace with actual version
+git push origin v0.1.3  # replace with actual version
 
-# 4. Create GitHub release
-gh release create v0.1.1 "dist/trello_tools-0.1.1.tar.gz" "dist/trello_tools-0.1.1-py3-none-any.whl" --title "Trello Tools v0.1.1" --generate-notes
+# 4. Create GitHub release (with executable)
+gh release create v0.1.3 "dist/trello_tools-0.1.3.tar.gz" "dist/trello_tools-0.1.3-py3-none-any.whl" "dist/trello-tools.exe" --title "Trello Tools v0.1.3" --generate-notes
 
-# 5. Upload to PyPI
-uv run twine upload dist/*
+# 5. Upload to PyPI (packages only)
+uv run twine upload dist/*.tar.gz dist/*.whl
 ```
 
 ### Automated Release

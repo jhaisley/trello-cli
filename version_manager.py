@@ -47,7 +47,11 @@ def create_release(version):
     print(f"\n🚀 Creating release for version {version}...")
     
     # Build packages
-    if not run_command("uv build", "Building packages"):
+    if not run_command("uv build", "Building Python packages"):
+        return False
+    
+    # Build executable
+    if not run_command("python build_executable.py --exe-only", "Building standalone executable"):
         return False
     
     # Push changes and tags
@@ -57,13 +61,13 @@ def create_release(version):
     if not run_command(f"git push origin v{version}", "Pushing tag"):
         return False
     
-    # Create GitHub release
-    release_cmd = f'gh release create v{version} "dist/trello_tools-{version}.tar.gz" "dist/trello_tools-{version}-py3-none-any.whl" --title "Trello Tools v{version}" --generate-notes'
+    # Create GitHub release with both packages and executable
+    release_cmd = f'gh release create v{version} "dist/trello_tools-{version}.tar.gz" "dist/trello_tools-{version}-py3-none-any.whl" "dist/trello-tools.exe" --title "Trello Tools v{version}" --generate-notes'
     if not run_command(release_cmd, "Creating GitHub release"):
         return False
     
     print(f"✅ Release v{version} created successfully!")
-    print(f"📦 PyPI upload: uv run twine upload dist/*")
+    print("📦 PyPI upload: uv run twine upload dist/*.tar.gz dist/*.whl")
     return True
 
 

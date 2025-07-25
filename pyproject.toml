@@ -60,5 +60,6 @@ package = true
 [dependency-groups]
 dev = [
     "bump2version>=1.0.1",
+    "pyinstaller>=6.14.2",
     "twine>=6.1.0",
 ]
