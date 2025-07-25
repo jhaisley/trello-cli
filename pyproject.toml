@@ -1,6 +1,6 @@
 [project]
 name = "trello-tools"
-version = "0.1.6"
+version = "0.1.7"
 description = "A CLI for interacting with Trello."
 requires-python = ">=3.11"
 authors = [{ name = "Jordan Haisley", email = "jordanhaisley@google.com" }]
