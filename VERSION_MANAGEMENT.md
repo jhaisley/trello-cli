@@ -33,7 +33,7 @@ python version_manager.py minor --release
 ## What Happens During Version Bump
 
 1. **Updates version in files**:
-   - `pyproject.toml` 
+   - `pyproject.toml`
    - `src/trello_cli/__init__.py`
    - `.bumpversion.cfg`
 
@@ -44,6 +44,7 @@ python version_manager.py minor --release
 ## Building Executables
 
 ### Standalone Executable
+
 Build a standalone executable that doesn't require Python:
 
 ```bash
@@ -62,6 +63,7 @@ The executable will be created at `dist/trello-tools.exe` (~40MB) and can be dis
 ## Release Workflow
 
 ### Manual Release
+
 ```bash
 # 1. Bump version
 uv run bump2version patch
@@ -82,6 +84,7 @@ uv run twine upload dist/*.tar.gz dist/*.whl
 ```
 
 ### Automated Release
+
 ```bash
 # One command to bump, build, and release
 python version_manager.py patch --release
@@ -106,6 +109,7 @@ The version management is configured in `.bumpversion.cfg`:
    - **Major** (0.1.0 → 1.0.0): Breaking changes
 
 3. **Test before releasing**:
+
    ```bash
    # Run tests
    uv run pytest
@@ -115,6 +119,7 @@ The version management is configured in `.bumpversion.cfg`:
    ```
 
 4. **Review changes**:
+
    ```bash
    # Dry run to preview changes
    uv run bump2version --dry-run --verbose patch
@@ -123,6 +128,7 @@ The version management is configured in `.bumpversion.cfg`:
 ## Troubleshooting
 
 ### Working directory not clean
+
 ```bash
 # Commit your changes first
 git add .
@@ -133,7 +139,9 @@ uv run bump2version patch
 ```
 
 ### Version already exists
+
 If you need to re-create a version:
+
 ```bash
 # Delete tag locally and remotely
 git tag -d v0.1.1

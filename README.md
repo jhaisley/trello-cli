@@ -10,15 +10,18 @@ A powerful command-line interface (CLI) for interacting with Trello. Manage your
 ## 🚀 Quick Start
 
 ### Option 1: Install from PyPI (Recommended)
+
 ```bash
 pip install trello-tools
 trello-tools --help
 ```
 
 ### Option 2: Download Standalone Executable
+
 No Python required! Download the latest `trello-tools.exe` from [GitHub Releases](https://github.com/jhaisley/trello-tools/releases).
 
 ### Option 3: Install from Source
+
 ```bash
 git clone https://github.com/jhaisley/trello-tools.git
 cd trello-tools
@@ -57,6 +60,7 @@ This CLI provides a comprehensive set of commands to manage your Trello boards. 
 This project started as a single-purpose utility called `tlabeler` to automatically label unlabeled Trello cards using AI. This helped with personal organization and sorting. After others saw its usefulness and wanted to use it, the project expanded to include more general-purpose commands for manual use and scripting.
 
 The CLI has since been used for various purposes, including:
+
 - Managing technical support tickets
 - Tracking outages
 - Creating boards for new clients and projects
@@ -67,47 +71,53 @@ Given its wide range of uses, the project has been made public to be used by a w
 ## Features
 
 ### 📋 **Board Management**
+
 - **View all boards**: List all your Trello boards with IDs
 - **Create new boards**: Set up new projects instantly
 - **List management**: View all lists on any board
 - **Board reporting**: Generate activity reports
 
 ### 🃏 **Card Operations**
+
 - **Create cards**: Add new cards to any list
 - **Move cards**: Transfer cards between lists seamlessly
 - **Comment system**: Add comments to cards for collaboration
 - **Bulk operations**: Process multiple cards efficiently
 
 ### 🏷️ **Smart Labeling**
+
 - **Manual labeling**: Apply labels to unlabeled cards in bulk
 - **AI-powered labeling**: Automatically categorize cards using Google Gemini AI
 - **Label management**: Create, delete, and organize labels
 - **Intelligent suggestions**: Get context-aware label recommendations
 
-### 🤖 **AI Features** 
+### 🤖 **AI Features**
+
 - **Google Gemini integration**: Leverage AI for intelligent card processing
 - **Automatic categorization**: Smart labeling based on card content
 - **Context understanding**: AI analyzes card titles and descriptions
 - **Batch processing**: Handle multiple cards with AI assistance
 
 ### ⚙️ **Configuration & Setup**
+
 - **Easy API setup**: Simple configuration for Trello and Gemini APIs
 - **Default boards**: Set frequently-used boards as defaults
 - **Secure storage**: API keys stored securely in local database
 - **Environment support**: Load configuration from `.env` files
 
 ### 🔧 **Advanced Tools**
+
 - **Automated archiving**: Archive inactive cards based on age
 - **Export functionality**: Backup boards to Loomic format
 - **Database management**: Local SQLite database for settings
 - **Comprehensive help**: Built-in help system for all commands
 
 ### 💻 **Multiple Distribution Options**
+
 - **PyPI package**: `pip install trello-tools`
 - **Standalone executable**: No Python required (~40MB)
 - **Source installation**: Full development setup
 - **Cross-platform**: Works on Windows, macOS, and Linux
-
 
 ## Installation
 
@@ -150,54 +160,64 @@ Before you can use the Trello CLI, you need to configure your Trello API credent
 
 ### Trello API
 
-1.  **Get your API Key and Token**:
+1. **Get your API Key and Token**:
     - Go to [https://trello.com/app-key](https://trello.com/app-key) to get your API key.
     - From that page, you can also generate a token.
 
-2.  **Set your credentials**:
+2. **Set your credentials**:
     You can set your credentials in two ways:
 
     - **Using the `config trello` command**:
+
         ```bash
         trello-tools config trello
         ```
+
         You will be prompted to enter your API key, API secret, and token.
 
     - **Using a `.env` file**:
         Create a `.env` file in your home directory (`~/.env`) with the following content:
-        ```
+
+        ```text
         TRELLO_API_KEY="your_api_key"
         TRELLO_API_SECRET="your_api_secret"
         TRELLO_TOKEN="your_token"
         ```
+
         Then, load the configuration:
+
         ```bash
         trello-tools config load
         ```
 
 ### Gemini API (for AI labeling)
 
-1.  **Get your API Key**:
+1. **Get your API Key**:
     - Go to [https://makersuite.google.com/](https://makersuite.google.com/) to get your Gemini API key.
 
-2.  **Set your API key**:
+2. **Set your API key**:
+
     ```bash
     trello-tools config gemini
     ```
+
     You will be prompted to enter your API key.
 
 ### Set a Default Board
 
 You can set a default board to avoid having to specify the board ID for every command.
 
-1.  **Find your board ID**:
+1. **Find your board ID**:
     You can find your board ID by running:
+
     ```bash
     trello-tools boards show
     ```
+
     The board ID is the long string of characters after the board name.
 
-2.  **Set the default board**:
+2. **Set the default board**:
+
     ```bash
     trello-tools config set-default-board "your_board_id"
     ```
@@ -219,16 +239,19 @@ trello-tools cards --help
 ### Board Commands
 
 - **Show all boards**:
+
     ```bash
     trello-tools boards show
     ```
 
 - **Create a new board**:
+
     ```bash
     trello-tools boards create "My New Board"
     ```
 
 - **List all lists on a board**:
+
     ```bash
     trello-tools boards lists --board-id "your_board_id"
     ```
@@ -236,16 +259,19 @@ trello-tools cards --help
 ### Card Commands
 
 - **Create a new card**:
+
     ```bash
     trello-tools cards create "your_list_id" "My New Card"
     ```
 
 - **Move a card to another list**:
+
     ```bash
     trello-tools cards move "your_card_id" "your_new_list_id"
     ```
 
 - **Add a comment to a card**:
+
     ```bash
     trello-tools cards comment "your_card_id" "This is a comment."
     ```
@@ -253,11 +279,13 @@ trello-tools cards --help
 ### Label Commands
 
 - **List all labels on a board**:
+
     ```bash
     trello-tools labels list --board-id "your_board_id"
     ```
 
 - **Create a new label**:
+
     ```bash
     trello-tools labels create "My New Label" "blue" --board-id "your_board_id"
     ```
@@ -265,16 +293,19 @@ trello-tools cards --help
 ### Automated Tasks
 
 - **Apply a label to all unlabeled cards**:
+
     ```bash
     trello-tools label "My Label" --board-id "your_board_id"
     ```
 
 - **Automatically label cards using AI**:
+
     ```bash
     trello-tools ai-label --board-id "your_board_id"
     ```
 
 - **Archive inactive cards**:
+
     ```bash
     trello-tools archive --days 30 --board-id "your_board_id"
     ```
@@ -347,12 +378,12 @@ pytest
 
 Contributions are welcome! Please feel free to submit a pull request.
 
-1.  Fork the repository.
-2.  Create a new branch (`git checkout -b feature/your-feature`).
-3.  Make your changes.
-4.  Commit your changes (`git commit -am 'Add some feature'`).
-5.  Push to the branch (`git push origin feature/your-feature`).
-6.  Create a new Pull Request.
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/your-feature`).
+3. Make your changes.
+4. Commit your changes (`git commit -am 'Add some feature'`).
+5. Push to the branch (`git push origin feature/your-feature`).
+6. Create a new Pull Request.
 
 ## License
 

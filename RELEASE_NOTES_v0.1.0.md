@@ -1,6 +1,6 @@
 # Trello Tools v0.1.0 - Initial Release
 
-🎉 **Welcome to Trello Tools!** 
+🎉 **Welcome to Trello Tools!**
 
 A powerful command-line interface for managing your Trello boards, cards, and labels - now available on PyPI!
 
@@ -29,27 +29,32 @@ trello-tools config set-default-board "your_board_id"
 ## ✨ Key Features
 
 ### 📋 **Board Management**
+
 - View all your Trello boards
 - Create new boards
 - List all lists on a board
 
-### 🃏 **Card Management** 
+### 🃏 **Card Management**
+
 - Create new cards
 - Move cards between lists
 - Add comments to cards
 - Archive inactive cards automatically
 
 ### 🏷️ **Label Management**
+
 - Create and manage labels
 - Apply labels to unlabeled cards in bulk
 - **AI-Powered Labeling**: Automatically label cards using Google Gemini AI
 
 ### ⚙️ **Configuration**
+
 - Easy setup for Trello API credentials
 - Optional Gemini API setup for AI features
 - Default board configuration for convenience
 
 ### 🔧 **Advanced Features**
+
 - Generate board activity reports
 - Export boards to Loomic backup format
 - Comprehensive help system for all commands
@@ -68,7 +73,7 @@ trello-tools ai-label --board-id "your_board_id"
 
 ## 📚 Documentation
 
-- **Repository**: https://github.com/jhaisley/trello-tools
+- **Repository**: <https://github.com/jhaisley/trello-tools>
 - **Installation Guide**: See [INSTALL.md](https://github.com/jhaisley/trello-tools/blob/main/INSTALL.md)
 - **Full Documentation**: See [README.md](https://github.com/jhaisley/trello-tools/blob/main/README.md)
 
@@ -77,7 +82,7 @@ trello-tools ai-label --board-id "your_board_id"
 If you were using the previous `trello-cli` package, simply:
 
 1. Uninstall the old package: `pip uninstall trello-cli`
-2. Install the new package: `pip install trello-tools` 
+2. Install the new package: `pip install trello-tools`
 3. Use `trello-tools` instead of `trello-cli` in your commands
 
 Your configuration and data remain compatible!

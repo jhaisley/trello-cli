@@ -35,6 +35,7 @@ trello-tools --help
 ```
 
 **Upgrade to latest version:**
+
 ```bash
 pip install --upgrade trello-tools
 ```
@@ -44,12 +45,14 @@ pip install --upgrade trello-tools
 **Requirements**: None (self-contained)
 
 **Windows:**
+
 1. Visit [GitHub Releases](https://github.com/jhaisley/trello-tools/releases)
 2. Download `trello-tools.exe` from the latest release
 3. Place it in a folder in your PATH (optional)
 4. Run: `trello-tools.exe --help`
 
 **Benefits:**
+
 - No Python installation needed
 - Portable - runs anywhere
 - Perfect for corporate environments
@@ -144,19 +147,23 @@ trello-tools boards show
 ## 🔧 Troubleshooting
 
 ### Python not found
+
 - **Solution**: Install Python 3.11+ from [python.org](https://python.org)
 - **Alternative**: Use the standalone executable
 
 ### Permission errors
+
 - **Windows**: Run terminal as Administrator
 - **macOS/Linux**: Use `sudo pip install trello-tools`
 - **Better solution**: Use virtual environments
 
 ### Package conflicts
+
 - **Solution**: Use a virtual environment
 - **Quick fix**: `pip install --user trello-tools`
 
 ### Import errors
+
 - **Check Python version**: `python --version` (needs 3.11+)
 - **Reinstall**: `pip uninstall trello-tools && pip install trello-tools`
 
@@ -170,14 +177,17 @@ trello-tools boards show
 ## 🔄 Updating
 
 ### PyPI Installation
+
 ```bash
 pip install --upgrade trello-tools
 ```
 
 ### Standalone Executable
+
 Download the latest `trello-tools.exe` from releases and replace your existing file.
 
 ### Development Installation
+
 ```bash
 cd trello-tools
 git pull
