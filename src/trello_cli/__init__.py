@@ -6,7 +6,7 @@ including features for board management, card operations, label management, and 
 automation using Google Gemini.
 """
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 __author__ = "Jordan Haisley"
 __email__ = "jordanhaisley@google.com"
 
