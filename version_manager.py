@@ -38,7 +38,10 @@ def bump_version(part):
         return False
 
     # Commit the updated lock file
-    if not run_command('git add uv.lock && git commit -m "Update uv.lock after version bump"', "Committing updated lock file"):
+    if not run_command(
+        'git add uv.lock && git commit -m "Update uv.lock after version bump"',
+        "Committing updated lock file",
+    ):
         return False
 
     # Get the new version from the config file
@@ -49,20 +52,27 @@ def bump_version(part):
             if line.startswith("current_version"):
                 new_version = line.split("=")[1].strip()
                 print(f"[+] Version bumped to {new_version}")
-                
+
                 # Check if tag exists, create it if not
                 tag_name = f"v{new_version}"
-                result = subprocess.run(f"git tag --list {tag_name}", shell=True, capture_output=True, text=True)
+                result = subprocess.run(
+                    f"git tag --list {tag_name}",
+                    shell=True,
+                    capture_output=True,
+                    text=True,
+                )
                 if tag_name not in result.stdout:
                     print(f"[*] Creating missing tag {tag_name}")
-                    if not run_command(f"git tag {tag_name}", f"Creating tag {tag_name}"):
+                    if not run_command(
+                        f"git tag {tag_name}", f"Creating tag {tag_name}"
+                    ):
                         return False
-                
+
                 return new_version
     except Exception as e:
         print(f"[-] Error reading version: {e}")
         return None
-    
+
     return None
 
 
